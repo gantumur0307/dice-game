@@ -96,7 +96,7 @@ document.querySelector(".btn-roll").addEventListener("click", function (){
             document.getElementById('score-'+activePlayer).textContent=scores[activePlayer];
 
             //ug toglogchiig hojson esehiig shalgah
-            if(scores[activePlayer]>=20) {
+            if(scores[activePlayer]>=100) {
                 //togloom duussan tuluwt oruulna
                 isNewGame=false;
 
