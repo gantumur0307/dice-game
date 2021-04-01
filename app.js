@@ -1,3 +1,6 @@
+//togloom duussan esehiig hadgalah
+var isNewGame;
+
 // toglogchiin eeljiig hadgalah huwisagch 1-player 0, 2-player 1 gej temdeglii
 var activePlayer;
 
@@ -10,9 +13,13 @@ var roundScore;
 //shoonii zurag uzuuleh DOM-s haij olood end hadgalii
 var diceDom=document.querySelector(".dice");
 
+//togloom ehluuleh
 initGame();
 
 function initGame(){
+//togloom ehellee gedeg tuluwt oruulna
+    isNewGame=true;
+
     // toglogchiin eeljiig hadgalah huwisagch 1-player 0, 2-player 1 gej temdeglii
     activePlayer=0;
     
@@ -45,7 +52,8 @@ function initGame(){
 
 //shoog shideh event lister
 document.querySelector(".btn-roll").addEventListener("click", function (){
-    //1-6 dotorh sanamsargui toog gargaj awna
+    if(isNewGame){
+        //1-6 dotorh sanamsargui toog gargaj awna
     var diceNumber=Math.floor(Math.random()*6)+1;
 
     //shoonii zurgiig web deer gargaj irne
@@ -67,12 +75,16 @@ document.querySelector(".btn-roll").addEventListener("click", function (){
         // ENE toglogchiin eeljindee bussan onoog 0 bolgono
         switchNextPlayer();
     }
+    }else{
+        alert('togloom duusan new game towch darj ehelne uu');
+    }
 });
 
 //HOLD towchnii event lister
         // button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
         document.querySelector(".btn-hold").addEventListener("click", function(){
-            // Ug toglogchiin onoog nemj hadgalah
+            if(isNewGame){
+                // Ug toglogchiin onoog nemj hadgalah
             // if(activePlayer===0){
             //     scores[0]=scores[0]+roundScore;
             // }else{
@@ -85,12 +97,18 @@ document.querySelector(".btn-roll").addEventListener("click", function (){
 
             //ug toglogchiig hojson esehiig shalgah
             if(scores[activePlayer]>=20) {
+                //togloom duussan tuluwt oruulna
+                isNewGame=false;
+
                 document.getElementById('name-'+activePlayer).textContent="winner";
                 document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
                 document.querySelector('.player-' +activePlayer+'-panel').classList.remove('active');
             }else{
                 //eeljiin onoog solino
                 switchNextPlayer();
+            }
+            }else{
+                alert('togloom duusan new game towch darj ehelne uu');
             }
         });
 //ene funtion daraachiin toglogch ruu shiljuulne
